@@ -45,7 +45,7 @@ export async function load({ params }) {
     let submission = await req.get(`https://${BASE_URL}/gym/${params.gym}/submission/${params.submission}`, { 
         // withCredentials: true 
         headers: {
-            Cookie: config.get('cookie'),
+            Cookie: process.env.CF_COOKIE || config.get('cookie'),
         }
     });
     const $ = cheerio.load(submission.data);
