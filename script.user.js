@@ -10,7 +10,7 @@
 // @description 查看Codeforces GYM中的代码
 // ==/UserScript==
 
-function () {
+$(function () {
     'use strict';
     let $tbody = $('table.status-frame-datatable>tbody');
     let tr = $tbody.find('tr');
@@ -30,4 +30,4 @@ function () {
             cell.remove();
         }
     }
-}
+});
