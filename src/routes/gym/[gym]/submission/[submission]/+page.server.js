@@ -26,7 +26,7 @@ async function login() {
     console.log(res.headers)
 }
 
-async function is_login()  {
+async function is_login() {
     let res = await req.get(`https://${BASE_URL}`)
     if (res.data.indexOf('logout">Logout</a>') !== -1) {
         return true;
@@ -42,7 +42,7 @@ export async function load({ params }) {
     // } else {
     //     console.log('login failed!');
     // }
-    let submission = await req.get(`https://${BASE_URL}/gym/${params.gym}/submission/${params.submission}`, { 
+    let submission = await req.get(`https://${BASE_URL}/gym/${params.gym}/submission/${params.submission}`, {
         // withCredentials: true 
         headers: {
             Cookie: process.env.CF_COOKIE || config.get('cookie'),
@@ -51,6 +51,10 @@ export async function load({ params }) {
     const $ = cheerio.load(submission.data);
 
     let source_node = $('#program-source-text');
+    let problem = $('div.datatable').find('tbody')
+                    .children().eq(1)
+                    .children().eq(2)
+                    .children().eq(0).attr('title');
     let code = source_node.text();
     let lang = source_node.attr('class')?.split(' ')[1]
     lang = lang?.substring(lang.indexOf('-') + 1)
@@ -58,6 +62,7 @@ export async function load({ params }) {
     let hl_code = hljs.highlight(code, { language: lang }).value;
 
     return {
+        problem: problem,
         gym: params.gym,
         submission: params.submission,
         code: hl_code

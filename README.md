@@ -1,6 +1,8 @@
 ## CF GYM VIEWER
 
-View code on Codeforces GYM without an admin account, inspired by [cf-code](https://github.com/dianhsu/cf-code). You can also use it with your own alt account so you don't have to enable admin mode on your main account.
+View code on Codeforces GYM without an coach mode, inspired by [cf-code](https://github.com/dianhsu/cf-code). You can also use it with your own alt account so your main account won't get messed up by coach mode.
+
+This works best with a [user script](https://github.com/thallium/cf-gym-viewer/raw/main/script.user.js) which makes the submission id clickable just like a regular contest.
 
 Currently this uses cookie to fetch submission, login functionality is being implemented.
 
